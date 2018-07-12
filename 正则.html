@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+手机号：<input type="text" name="tel"/><br>
+<input type="submit" name="1"><br>
+邮箱：<input type="text" name="email"/><br>
+<input type="submit" name="2"><br>
+身份证：<input type="text" name="card"/><br>
+<input type="submit" name="3"><br>
+域名：<input type="text" name="yu"/><br>
+<input type="submit" name="4"><br>
+标签：<input type="text" name="bt"><br>
+<input type="submit" name="5"><br>
+</body>
+</html>
+<script>
+    // let reg=/a/;
+    // let str='abcdaceabb';
+    // let reg=new RegExp('a','g');
+    // function getindex(str,reg) {
+    //     let arr=[];
+    //     let res=[];
+    //     do{
+    //         res=reg.exec(str);
+    //         if(res){
+    //             arr.push(res[0])
+    //         }
+    //     }while(res);
+    //     return arr;
+    // }
+    // console.log(getindex(str,reg));
+    // console.log(str.match(reg));
+
+    let tel=/^1[3-9]\d{9}$/;
+    let str=$('input[name=tel]');
+    let mail=/^\w{6,18}\@[0-9a-zA-Z]{2,5}\.com$/;
+    let mtr=$('input[name=email]');
+    let ctr=$('input[name=card]');
+    let card=/^[1-9]\d{15}[13579][0-9X]$/;
+    let ytr=$('input[name=yu]');
+    let yu=/^(?:https?:)?w{3}\.\w+\.(?:com|cn|net|vip|us|top)$/;
+    let btr=$('input[name=bt]');
+    let bt=/^<[a-z]{1,10}>$/;
+    function pp(str,reg) {
+        let val=$.trim(str.val());
+        if (reg.test(val)){
+            $('<div></div>').html(val).appendTo(document.body)
+        }else{
+            $('<div>请重新输入</div>').appendTo(document.body)
+        }
+    }
+    $('input[type=submit]').click(function () {
+        if ($(this).attr('name')==1){
+            pp(str,tel);
+        }else if($(this).attr('name')==2){
+            pp(mtr,mail)
+        }else if ($(this).attr('name')==3){
+            pp(ctr,card)
+        }else if($(this).attr('name')==4){
+            pp(ytr,yu);
+        }else if($(this).attr('name')==5){
+            let val=btr.val();
+            if (bt.test(val)){
+                let obj=val.slice(1,-1);
+                let html=document.createElement(obj);
+                body.innerText = html;
+            }
+        }
+    })
+
+
+    // let str='1()'
+    // let reg=/\(\)/
+    // console.log(reg.exec(str))
+
+</script>
+<!--正则：是用来检测是否符合某种语法规范的字符串的语言。-->
+<!--1、怎么检测-->
+<!--2、语法规范是怎么样子的-->
+<!--3、字符串方法和正则的配合。-->
+<!--let reg=/adsadas/-->
+<!--let reg=new RegExp('a','')-->
+<!--第二个参数是模式修正符 g i m 三个修正符。-->
+<!--g 代表全局匹配-->
+<!--i 不区分大小写进行匹配-->
+<!--m 多行匹配 会把每一行的开头结尾当成一个新的匹配-->
+<!--正则有一个下标叫做 lastIndex 决定匹配是从哪开始的。-->
+<!--定界符  / /  中间才是需要书写的语法规范。-->
+<!--exec匹配的永远是第一个值-->
+<!--一个规则只能检测一个字符-->
+<!--构成正则表达式的最小单位  原子 一个原子只能匹配一个字符-->
+<!-- \  转义字符-->
+<!--\d  匹配0-9的数字  也是一个原子-->
+<!--\D  匹配除了0-9的数字-->
+<!--\w  数字字母下划线 0-9 a-z、A-Z _ 这些中的任意一个字符。也是一个原子-->
+<!--\W  匹配除了数字字母下划线-->
+<!--\s  用来匹配空白字符 空格 \n换行 \t制表符 \r回车 \f换页
+        \v垂直制表符等字符 也是一个原子-->
+<!--\S  匹配除了空白字符以外的字符。-->
+<!-- .  匹配除了换行以外的所有字符。匹配不到的 \n \r-->
+<!--原子表[]  是一个组合，在[]里面写你想要的字符，
+        只能匹配一个字符，不能匹配两个字符，相当于加了一个或-->
+<!--^  表示中括号里面的全部除外-->
+<!--|  代表前面所有和后面所有-->
+<!--let reg=/a(b|c)d/  加了括号以后，会形成原子分组-->
+<!--原子分组 1、将括号内作为一个整体。-->
+<!--         2、将括号内匹配到的值压入内存，以便调用。-->
+<!--反向引用 \1的方式去引用括号里面的内容-->
+<!--取消反向引用  在括号前面加上 ?: 的时候就不会压入内存 (?:a|b)-->
+<!--量词  让程序重复性进行 -->
+<!--   ? 0次或者1次       * 匹配任意次      + 一次或者多次   一般放在原子后面表示-->
+<!--{n}  代表匹配N次。{n,} 大于N次。{n,m}  N到M次。-->
+<!--贪婪匹配   默认匹配方式，只要能匹配成功，尽可能多的去匹配。-->
+<!--吝啬匹配   在匹配成功的情况下，尽可能少的去匹配。在量词的后边添加?  1[3-9]\d{2-5}?-->
+<!--元字符  具有特殊意义的原子称作元字符   例如 . ()  在使用的时候需要通过\转义。-->
+<!--边界匹配  字符串的前边和后边要一致。^  $-->
