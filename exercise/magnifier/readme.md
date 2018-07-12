@@ -1,3 +1,7 @@
+# 技术点：
+
+[!](Interview/exercise/magnifier/屏幕快照 2018-07-09 上午11.52.46.png)
+ 
  # 代码：
  
  ```
