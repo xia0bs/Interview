@@ -1,6 +1,7 @@
 # 技术点：
 
-[!](Interview/exercise/magnifier/屏幕快照 2018-07-09 上午11.52.46.png)
+![](https://github.com/xia0bs/Interview/blob/master/exercise/magnifier/屏幕快照%202018-07-09%20下午4.13.47.png)
+![](https://github.com/xia0bs/Interview/blob/master/exercise/magnifier/屏幕快照%202018-07-09%20上午11.52.46.png)
  
  # 代码：
  
